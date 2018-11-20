@@ -1,3 +1,6 @@
+print("enter the original file name")
+filename = input()
+
 #remove the duplicate words in list
 def unique_list(l):
     ulist = []
@@ -5,7 +8,9 @@ def unique_list(l):
     return ulist
 
 #read from tokenized tweets
-f = open('../data/output/tokenized.txt','r')
+
+fn = filename[:-4]
+f = open('../data/output/tokenized'+fn+'.txt','r')
 temp = f.readlines();
 f.close();
 
@@ -34,9 +39,6 @@ for i in range(len(tokens)):
     str=' '.join(unique_list(str.split()))
     extractedFeatures.append(str)
 
-print("enter the original file name")
-filename = input()
-
 #relate with classes from original text file
 f = open('../data/input/'+filename,'r')
 lines = f.readlines()
@@ -48,7 +50,7 @@ for i in range ( len(lines) ):
     arr.append(lines[i].split('\t'))
 
 #write the extracted features
-file = open('../data/output/extracted.txt','w') 
+file = open('../data/output/extracted'+fn+'.txt','w') 
 for  i  in  range (len(temp)): 
     text = arr[i][2];
     file.write(text);
